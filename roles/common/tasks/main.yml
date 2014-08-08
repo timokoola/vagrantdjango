@@ -1,0 +1,34 @@
+---
+# file: /roles/common/main.yml
+# Setups the basics of the instance
+#- name: update and upgrade
+#  apt: upgrade=dist
+
+- name: install locale packages
+  apt: upgrade=dist update_cache=yes
+  sudo: yes
+
+- name: install common packages needed for python application development
+  apt: pkg={{item}} state=installed
+  sudo: yes
+  with_items:
+    - python-dev
+    - python-setuptools
+    - build-essential
+    - libreadline-dev
+    - python-psycopg2
+    - git-core
+    - language-pack-en-base
+
+- name: install pip
+  sudo: yes
+  easy_install: name=pip
+
+- name: install various libraries with pip
+  sudo: yes
+  pip: name={{item}} state=present
+  with_items:
+    - virtualenv
+    - supervisor
+    - uwsgi
+    - ipython

@@ -1,0 +1,13 @@
+# file: postgres/tasks/main.yml
+
+- include: install.yml
+  tags: [postgresql, postgresql-install]
+
+- include: configure.yml
+  tags: [postgresql, postgresql-configure]
+
+- include: databases.yml
+  tags: [postgresql, postgresql-databases]
+
+- include: users.yml
+  tags: [postgresql, postgresql-users]

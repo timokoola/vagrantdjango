@@ -1,0 +1,8 @@
+---
+- name: Setup Django-test production/dev environment 
+  hosts: default
+  user: vagrant
+
+  roles:
+    - common
+    - postgres
